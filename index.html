@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glycotrace — Suivi glycémique estimatif</title>
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAD////////////////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+///////////////////////9/f3/9vb2//b29v/19fX/9fX1//b29v/29vb/9fX1//X19f/19fX/9fX1//X19f/19fX/9fX1//X19f/19fX/9fX1//X19f/19fX/9fX1//X19f/19fX/9fX1//X19f/19fX/9fX1//X19f/19fX/9vb2//z8/P////////////f39//9/f3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/f3/9/f3///////+/v7/9/f3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////39/f//v7+//7+/v/39/f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////b29v/+/v7//v7+//j4+P///////////////////////v79//7+/v/+/v7//////////v/+/v7//v7+//7+/v/+/v7//v7+//7+/v///////f39///+/v/9/fz//v39//7+/v/////////+////////////////////////////9vb2//7+/v/+/v7/+Pf3///////////////////////+/v7/+vn3///////6+vj//v39///////7+vj//f38//v7+f/8/Pv///7///7+/v///////f38///+/v///////Pv5//z7+f///v7//fz7///////////////////////39/f//v7+//7+/v/39/f////////////+/v3//////9fMvP/Ar5f/v66V/8u9qf/QxLL/3NPG/8a3oP/Uybn/wrKa/8/Cr//b0cT/3NLF/8Oymv/Bspv/xbag/8Gxmf/BsZn/1Mq5/7Sgg//Xzr////////7+/v////////////b39v/+/v7//v7+//j4+P////////////79/f//////v62U/8q9qP+2pIj/5d/V/7ekiP+sl3j/wbGZ/83Arv+5por/vauQ/7Gbe/+9rJL/nYJa/8Gwmf+qk3L/t6OG/72rkf/b0sT/mX5W/9fNvf///////v39////////////9/b3//7+/v/+/v7/9/f3///////////////+///////39fL/4dnN//Ty7v/z8e3/8O3n//Lw6//i2s7/7ejh/+rl3v/t6uX/6OTd/+jj2//m39T/9vTw//Hu6f/6+ff/7Ojg/+Te1P/p5Nz/7eni//////////7////////////39/f//v7+//7+/v/4+Pj////////////////////////////////////////////+/f3//v7+///////+/////fr1//Pm2P/06dv//fn1//////////////7+//7+/f////////////////////////////////////////////b29v/+/v7//v7+//j4+P/////////////////////////+//79/f///v7//v79//79/P//////5M60/8KHRv+zaRb/s2gU/7JoE/+xaBb/wYZF/+TOtP////////79//79/f/+/v7//v39//7+/v//////////////////////9vb2//7+/v/+/v7/9/j4///////////////////////////////////+/v//////+vj1/8qYYP+wYAn/yJNY/+fRuP/x5tv/8ebb/+fSuf/Hk1n/r2AJ/8qYYP/6+PX////////+/v/////////////////////////////////29vb//v7+//7+/v/39/f///////////////////////////////7///////z8+v/EjE3/tWsY/+nZw///////7+PW/9Cmbv/PpWz/7uPV///////q2sX/tGoY/8SMTf/8/Pr//////////v////////////////////////////b29v/+/v7//v7+//j4+P////////////////////////////79/P//////1Kx//7NmEf/w5NX///////fx7f/DiDn/yosl/8aGH/++gTH/9/Lu///////w5dj/sWUR/9Ssfv///////v38////////////////////////////9vb2//7+/v/+/v7/+Pj4///////////////////////+/v3///////Tr4v+0ZRP/4sOl/+/t2f/i2bH/5dbC/8OCIv/atW//2rd0/7uEOv/g0MX/9uvT//Xr0P/ewJ//smYQ//Xt4v///////v79///////////////////////39/f//v7+//7+/v/4+Pj////////////////////+///////6+vT/2MaY/8OdV//38+v/0MGF/7WfSf/f1a7/y5hU/962Yf/iwXr/0Lib/9a+qf/kxof/6cyH//fy6v+1byb/2rmW///////+/fv///////////////////////f39//+/v7//v7+//j4+P////////////////////7///////n48f/JunT/yLt0/8CsXP/KuGz/vrKO/8nK0//AtML/z6FJ/8iyh//dx6D/+e3M/+TKl//w4sX/7Nab/+XMnP/o0J///fvz//////////7/////////////////9vb3//7+/v/+/v7/+Pj4///////////////////////+/vz//////7ukS//Drl7/49u4/8CsWv/QwYH/cHrO/6ay6v/Cqoz/h43P//Lnzv/py3n/0qx6/+HHqf////r/1sOB/9XDfv////7////////////////////////////39vf//v7+//7+/v/4+Pj///////////////////////7+/P//////waxZ/7eePf//////08aO/8y5bv/m7v//ztn//9XJuP/CuLj////////+9f/RqHj/5Mqg//////+zmTf/vqhT///////+/fz///////////////////////f39//+/v7//v7+//f39////////////////////////v37///////Uxo7/p4oT//v69f/29On/r5Us/9fGgv/Tw4T/zbx1/+nLiP/ky6D/3L6W/86fUv/+/PP/+fjy/6mKFf/VyJD///////79+///////////////////////9/f3//7+/v/+/v7/9/f3///////////////////////+/v3///////Lu3v+igwX/1smU///////w69f/ybhz/8u6dP/18+j//vvz/+nQl//ozZb/+vXj///////XypX/o4MG//Lu3v///////v79///////////////////////29/b//v7+//7+/v/4+Pj////////////////////////////+/vz//////8m3cP+khAr/8e3b///////+/v3///76//Xs1//y6dD/+PXm////////////8e3b/6SECv/Jt2////////7+/P////////////////////////////f39//+/v7//v7+//j4+P///////////////////////////////v//////+/r2/7WcOv+oihj/6uXL////////////9u3a//Xs1v///////////+vly/+oiRf/tpw6//v69v/////////+////////////////////////////9/f3//7+/v/+/v7/+Pj4//////////////////////////////////7+/v//////+Pbu/7ukSP+gfgD/wq1b/+LYsv/x7t7/8e3d/+LYsf/DrVv/oH4A/7ykSf/49u7///////7+/v/////////////////////////////////39/f//v7+//7+/v/4+Pj///////////////////////////////////////7+/v///v7//v79/9zQof+zmC//poUJ/6aFCf+mhQn/pYUJ/7OYL//c0KH//v79///+/v/+/v7///////////////////////////////////////f39//+/v7//v7+//j4+P/////////////////////////////////////////////+/v/+/v3////////+/v/08OL/6uPF/+nixf/z8OH//v7+///////+/v3//v79////////////////////////////////////////////9/f3//7+/v/+/v7/+Pj4///////////////////////////////////////////////////////+/fv///7+/////////////////////////v7//v37/////v/////////////////////////////////////////////////39/f//v7+//7+/v/4+Pj///////////////////////////////////////////////////////////////7//v79//7+/P/+/fz//v79/////v////////////////////////////////////////////////////////////f39//+/v7///////n5+f/9/f3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/f3/+Pj4/////////////v7+//n5+f/5+fn/+Pj4//j4+P/4+Pj/+Pj4//j4+P/4+Pj/+fn5//j4+P/4+Pj/+Pj4//j4+P/4+Pj/+Pj4//j4+P/4+Pj/+Pj4//n5+f/4+Pj/+Pj4//j4+P/4+Pn/+Pj5//j4+P/4+Pj/+fn5//n5+f/9/f3///////////////////////7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7/////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-a:#EAF4F1;
+    --bg-b:#F1EFF9;
+    --bg:#EEF2ED;
+    --surface:#FFFFFF;
+    --ink:#1C2621;
+    --muted:#5B6B62;
+    --primary:#1E8A76;
+    --primary-dark:#146357;
+    --primary-light:#5FBBA4;
+    --warn:#D89A3E;
+    --danger:#C1554F;
+    --line:#DEE6E1;
+    --radius:14px;
+
+    --meal-breakfast:#E08A4F;
+    --meal-lunch:#3E9C63;
+    --meal-dinner:#5B62A6;
+    --meal-snack:#C15884;
+  }
+  *{box-sizing:border-box;}
+  body{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+  }
+  input, select, textarea{
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    user-select:text;
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% 0%, #FCEFE1 0%, transparent 45%),
+      radial-gradient(circle at 95% 15%, #E4EEF9 0%, transparent 40%),
+      linear-gradient(160deg, var(--bg-a), var(--bg-b) 65%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px;}
+
+  header.top{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:20px;flex-wrap:wrap;margin-bottom:28px;
+    border-bottom:1px solid var(--line);padding-bottom:20px;
+  }
+  .brand{display:flex;align-items:center;gap:16px;}
+  .brand .mark{width:52px;height:52px;flex-shrink:0;}
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:2.1rem;
+    margin:0 0 4px;
+    letter-spacing:-0.01em;
+    background:linear-gradient(100deg, var(--primary-dark), var(--primary) 55%, var(--meal-breakfast));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    display:inline-block;
+  }
+  .tagline{color:var(--muted);font-size:0.95rem;margin:0;max-width:480px;}
+  .dev-credit{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+  .date-control{display:flex;align-items:center;gap:8px;}
+  .date-control input[type=date]{
+    font-family:'IBM Plex Mono',monospace;
+    border:1px solid var(--line);
+    background:var(--surface);
+    border-radius:8px;
+    padding:8px 10px;
+    color:var(--ink);
+    font-size:0.9rem;
+  }
+
+  .notice-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,26,0.45);
+    z-index:1000;align-items:center;justify-content:center;padding:20px;
+  }
+  .notice-overlay.open{display:flex;}
+  .notice-modal{
+    background:var(--surface);border-radius:16px;max-width:560px;width:100%;
+    max-height:85vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,0.25);
+  }
+  .notice-modal-header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;
+    background:var(--surface);border-radius:16px 16px 0 0;
+  }
+  .notice-modal-header h2{font-family:'Fraunces',serif;font-weight:600;color:var(--primary-dark);}
+  .notice-close{
+    background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--muted);
+    padding:4px 8px;border-radius:6px;
+  }
+  .notice-close:hover{background:var(--bg-a);color:var(--ink);}
+  .notice-body{padding:20px 22px;font-size:0.92rem;line-height:1.6;color:var(--ink);}
+  .notice-body h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1rem;color:var(--primary-dark);
+    margin:18px 0 6px;
+  }
+  .notice-body h3:first-child{margin-top:0;}
+  .notice-body p{margin:0 0 4px;}
+
+  .identity-bar{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;margin-bottom:18px;box-shadow:0 4px 18px rgba(30,60,50,0.06);
+  }
+  .identity-bar input[type=text]{max-width:220px;}
+
+  .disclaimer{
+    background:#FBF4E8;
+    border:1px solid #E9D3A5;
+    color:#6B5424;
+    padding:14px 16px;
+    border-radius:var(--radius);
+    font-size:0.86rem;
+    line-height:1.5;
+    margin-bottom:28px;
+  }
+  .disclaimer strong{color:#5A461C;}
+
+  .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;}
+  @media (max-width:820px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    box-shadow:0 4px 18px rgba(30,60,50,0.06);
+  }
+  .card h2{
+    font-family:'Fraunces',serif;
+    font-size:1.15rem;
+    font-weight:600;
+    margin:0 0 16px;
+  }
+
+  .tabs{display:flex;gap:4px;margin-bottom:16px;background:var(--bg);padding:4px;border-radius:10px;}
+  .tab{
+    flex:1;text-align:center;padding:8px 10px;border-radius:7px;
+    font-size:0.85rem;font-weight:600;cursor:pointer;color:var(--muted);
+    transition:background .15s, color .15s;
+  }
+  .tab.active{background:var(--surface);color:var(--primary-dark);box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  .tab[data-tab="list"]{background:#F5D949;color:#000;}
+  .tab[data-tab="list"].active{background:#F5D949;color:#000;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  .tab[data-tab="manual"]{background:#5B8FD6;color:#000;}
+  .tab[data-tab="manual"].active{background:#5B8FD6;color:#000;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+
+  label{display:block;font-size:0.78rem;font-weight:600;color:var(--muted);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em;}
+  label:first-child{margin-top:0;}
+  select, input[type=text], input[type=number]{
+    width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:0.95rem;background:#FCFDFC;color:var(--ink);
+  }
+  select:focus, input:focus{outline:2px solid var(--primary);outline-offset:1px;}
+  select.meal-select{font-weight:600;border-width:2px;}
+  select.meal-select[data-meal="Petit déjeuner"]{border-color:var(--meal-breakfast);color:#8A4E22;background:#FBEBDD;}
+  select.meal-select[data-meal="Déjeuner"]{border-color:var(--meal-lunch);color:#215C38;background:#E1F0E5;}
+  select.meal-select[data-meal="Dîner"]{border-color:var(--meal-dinner);color:#333870;background:#E6E7F4;}
+  select.meal-select[data-meal="Collation"]{border-color:var(--meal-snack);color:#7C2F52;background:#F6E2EC;}
+
+  /* Couleurs des catégories dans la liste d'aliments */
+  optgroup.og-pains{color:#A8672E;font-weight:700;}
+  optgroup.og-feculents{color:#B58900;font-weight:700;}
+  optgroup.og-fruits{color:#C1554F;font-weight:700;}
+  optgroup.og-produits-laitiers{color:#3B7EA8;font-weight:700;}
+  optgroup.og-legumes{color:#3E9C63;font-weight:700;}
+  optgroup.og-cereales{color:#8A6420;font-weight:700;}
+  optgroup.og-sucres-simples{color:#C15884;font-weight:700;}
+  optgroup.og-boissons{color:#2E8F94;font-weight:700;}
+  optgroup.og-autres{color:#6B6B6B;font-weight:700;}
+  optgroup.og-meat{color:#8A3B30;font-weight:700;}
+  optgroup.og-sauce{color:#6C5C93;font-weight:700;}
+  optgroup.og-sweet{color:#B4407A;font-weight:700;}
+  optgroup.og-dish{color:#5B62A6;font-weight:700;}
+  optgroup.og-manual{color:#146357;font-weight:700;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+  .food-meta{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--muted);
+    margin-top:6px;min-height:16px;
+  }
+
+  button.primary{
+    margin-top:18px;width:100%;background:var(--primary);color:#fff;border:none;
+    padding:12px;border-radius:9px;font-weight:600;font-size:0.95rem;cursor:pointer;
+    transition:background .15s;font-family:'Inter',sans-serif;
+  }
+  button.primary:hover{background:var(--primary-dark);}
+  button.reset-btn{
+    margin-top:10px;display:inline-block;width:auto;background:var(--danger);color:#000;
+    border:1px solid var(--danger);padding:6px 10px;border-radius:6px;font-weight:700;
+    font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;
+  }
+  button.reset-btn:hover{opacity:0.85;}
+
+  button.web-check-btn{
+    flex-shrink:0;white-space:nowrap;background:var(--meal-breakfast);color:#000;
+    border:1px solid var(--meal-breakfast);padding:0 14px;border-radius:8px;font-weight:600;
+    font-size:0.82rem;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;
+  }
+  button.web-check-btn:hover{opacity:0.85;}
+  button.web-check-btn:disabled{opacity:0.5;cursor:wait;}
+
+  .summary-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px;}
+  .stat{
+    background:linear-gradient(160deg, #F2F8F5, #E8F2ED);
+    border:1px solid #DCEAE3;
+    border-radius:10px;padding:12px;text-align:center;
+  }
+  .stat .num{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:500;color:var(--primary-dark);}
+  .stat .lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-top:2px;}
+  .badge{
+    display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;
+    margin-top:2px;
+  }
+  .badge.low{background:#E3EFE8;color:var(--primary-dark);}
+  .badge.med{background:#F7EBD6;color:#8A6420;}
+  .badge.high{background:#F5DEDE;color:var(--danger);}
+
+  svg#curve{width:100%;height:180px;display:block;}
+  .curve-caption{font-size:0.75rem;color:var(--muted);margin-top:8px;line-height:1.4;}
+
+  table{width:100%;border-collapse:collapse;margin-top:6px;}
+  th{
+    text-align:left;font-size:0.72rem;text-transform:uppercase;letter-spacing:.03em;
+    color:var(--muted);padding:8px 6px;border-bottom:1px solid var(--line);font-weight:600;
+  }
+  td{padding:9px 6px;border-bottom:1px solid var(--line);font-size:0.9rem;}
+  td.num, th.num{font-family:'IBM Plex Mono',monospace;text-align:right;}
+  .del-btn{
+    background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:2px 6px;
+    border-radius:6px;
+  }
+  .del-btn:hover{background:#F5DEDE;color:var(--danger);}
+  .empty-log{color:var(--muted);font-size:0.88rem;padding:14px 4px;text-align:center;}
+
+  .meal-group{margin-bottom:18px;}
+  .meal-group:last-child{margin-bottom:0;}
+  .meal-header{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:1rem;color:var(--primary-dark);
+    padding:8px 12px;
+    border-left:4px solid var(--primary);
+    border-radius:6px;
+  }
+  .meal-header .meal-sub{
+    font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:0.78rem;color:var(--muted);
+  }
+  .meal-group.breakfast .meal-header{border-left-color:var(--meal-breakfast);color:#8A4E22;background:#FBEBDD;}
+  .meal-group.lunch .meal-header{border-left-color:var(--meal-lunch);color:#215C38;background:#E1F0E5;}
+  .meal-group.dinner .meal-header{border-left-color:var(--meal-dinner);color:#333870;background:#E6E7F4;}
+  .meal-group.snack .meal-header{border-left-color:var(--meal-snack);color:#7C2F52;background:#F6E2EC;}
+
+  .log-card{margin-top:20px;}
+  footer.note{text-align:center;color:var(--muted);font-size:0.78rem;margin-top:36px;}
+
+  #printReport{display:none;}
+  .report-day{margin-bottom:26px;page-break-inside:avoid;}
+  .report-day h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;margin:0 0 4px;color:var(--primary-dark);
+  }
+  .report-day .day-total{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--muted);margin-bottom:10px;}
+  .report-meal{margin-bottom:10px;}
+  .report-meal .rm-head{
+    font-size:0.85rem;font-weight:600;padding:4px 0 4px 10px;margin-bottom:4px;
+  }
+  .report-meal.breakfast .rm-head{border-left:3px solid var(--meal-breakfast);}
+  .report-meal.lunch .rm-head{border-left:3px solid var(--meal-lunch);}
+  .report-meal.dinner .rm-head{border-left:3px solid var(--meal-dinner);}
+  .report-meal.snack .rm-head{border-left:3px solid var(--meal-snack);}
+  .report-meal table{width:100%;border-collapse:collapse;margin-left:10px;}
+  .report-meal td, .report-meal th{padding:4px 8px;font-size:0.82rem;border-bottom:1px solid var(--line);}
+  .report-meal th{text-align:left;color:var(--muted);font-weight:600;font-size:0.7rem;text-transform:uppercase;}
+  .report-empty{color:var(--muted);font-size:0.9rem;padding:10px 0;}
+
+  @media print{
+    body *{visibility:hidden;}
+    #printReport, #printReport *{visibility:visible;}
+    #printReport{
+      display:block;position:absolute;top:0;left:0;width:100%;
+      background:#fff;padding:0;
+    }
+    .wrap, .card, header, .disclaimer, footer{box-shadow:none;background:none;}
+  }
+
+  .table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* ---- Responsive / mobile ---- */
+  @media (max-width:640px){
+    .wrap{padding:20px 14px 60px;}
+
+    header.top{
+      flex-direction:column;align-items:flex-start;gap:14px;
+    }
+    .brand{width:100%;}
+    .brand .mark{width:42px;height:42px;}
+    h1{font-size:1.6rem;}
+    .tagline{font-size:0.85rem;max-width:100%;}
+    .date-control{width:100%;}
+    .date-control > div{width:100%;justify-content:space-between;}
+    .date-control input[type=date]{flex:1;min-width:0;}
+
+    .disclaimer{font-size:0.8rem;padding:12px 14px;}
+
+    .card{padding:16px;}
+    .card h2{font-size:1.02rem;}
+
+    .row2{grid-template-columns:1fr;gap:10px;}
+    .summary-stats{gap:8px;}
+    .stat{padding:10px 6px;}
+    .stat .num{font-size:1.1rem;}
+    .stat .lbl{font-size:0.62rem;}
+
+    table{font-size:0.8rem;}
+    th, td{padding:7px 5px;font-size:0.78rem;}
+
+    .meal-header{
+      flex-direction:column;align-items:flex-start;gap:2px;padding:8px 10px;
+    }
+
+    button.primary{font-size:0.9rem;padding:11px;}
+    .tabs{flex-wrap:wrap;}
+  }
+
+  @media (max-width:400px){
+    .summary-stats{grid-template-columns:1fr 1fr 1fr;gap:6px;}
+    .stat .num{font-size:0.98rem;}
+    h1{font-size:1.4rem;}
+  }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1E8A76">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Glycotrace">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#146357"/>
+            <stop offset="55%" stop-color="#1E8A76"/>
+            <stop offset="100%" stop-color="#E08A4F"/>
+          </linearGradient>
+        </defs>
+        <rect x="1" y="1" width="62" height="62" rx="18" fill="#FFFFFF" stroke="#DEE6E1"/>
+        <path d="M8 40 Q 16 40 20 26 T 32 18 Q 38 16 42 30 T 56 24"
+              fill="none" stroke="url(#markGrad)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+          <h1>Glycotrace</h1>
+          <span style="font-weight:700;color:var(--muted);font-size:0.85rem;">Ver: 1.0</span>
+        </div>
+        <p class="tagline">Estimation de l'impact glycémique de vos repas à partir de l'index glycémique et des quantités ingérées.</p>
+      </div>
+    </div>
+    <div class="date-control">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <label style="margin:0;">Journée</label>
+        <input type="date" id="dateInput">
+        <button type="button" id="noticeBtn" class="web-check-btn">Notice</button>
+        <button type="button" id="installBtn" class="primary" style="display:none;width:auto;margin-top:0;padding:8px 14px;font-size:0.85rem;">Installer l'application</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="noticeOverlay" class="notice-overlay">
+    <div class="notice-modal">
+      <div class="notice-modal-header">
+        <h2 style="margin:0;">Notice d'utilisation</h2>
+        <button type="button" id="noticeClose" class="notice-close" aria-label="Fermer">✕</button>
+      </div>
+      <div class="notice-body">
+        <p><strong>Glycotrace</strong> est un outil éducatif d'estimation de l'impact glycémique de vos repas. Il ne mesure pas votre glycémie réelle et ne remplace pas un avis médical.</p>
+
+        <h3>1. Ajouter un aliment</h3>
+        <p>Dans une carte d'ajout, choisissez le <strong>repas</strong> concerné (Petit déjeuner, Déjeuner, Collation, Dîner), puis sélectionnez un aliment dans la liste (organisée par catégories et cherchable) ou saisissez-le manuellement avec ses glucides/100g et son index glycémique. Renseignez la quantité, puis validez.</p>
+
+        <h3>2. Suivre le journal du jour</h3>
+        <p>Le journal regroupe vos aliments par repas, avec le total de glucides et la charge glycémique de chaque repas et de la journée.</p>
+
+        <h3>3. Calculer une dose (si prescrite par votre médecin)</h3>
+        <p>Renseignez votre ratio insuline/glucides personnel pour obtenir une dose indicative liée au repas sélectionné. Ce calcul se réinitialise à chaque changement de repas et n'est qu'un reflet de votre propre prescription — vérifiez toujours avec votre équipe soignante.</p>
+
+        <h3>4. Historique et impression</h3>
+        <p>Vos 30 derniers jours sont conservés automatiquement. Le bouton dédié génère un rapport imprimable, détaillé par jour et par repas.</p>
+
+        <h3>5. Sources des données</h3>
+        <p>Les valeurs de glucides proviennent de la table officielle <strong>Ciqual (ANSES)</strong>. L'index glycémique reste une estimation pédagogique générale.</p>
+
+        <p style="margin-top:16px;color:var(--muted);font-size:0.85rem;">Toutes vos données restent stockées uniquement sur cet appareil — rien n'est envoyé en ligne.</p>
+
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line);text-align:center;">
+          <button type="button" id="resetAllBtn" class="reset-btn">Réinitialiser toutes les données</button>
+          <p class="curve-caption" style="margin-top:8px;">Efface définitivement : historique (30 jours), identité, aliments ajoutés manuellement et paramètres du calculateur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="identity-bar" id="identityBar">
+    <div id="identityForm" style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;">
+      <div>
+        <label for="identityFirstName" style="margin:0 0 5px;">Prénom</label>
+        <input type="text" id="identityFirstName" placeholder="Prénom">
+      </div>
+      <div>
+        <label for="identityLastName" style="margin:0 0 5px;">Nom</label>
+        <input type="text" id="identityLastName" placeholder="Nom">
+      </div>
+      <button class="primary" id="identitySubmit" style="margin-top:0;width:auto;padding:10px 20px;">OK</button>
+    </div>
+    <div id="identityDisplay" style="display:none;align-items:center;gap:10px;">
+      <span id="identityName" style="font-family:'Fraunces',serif;font-weight:600;color:var(--primary-dark);"></span>
+      <button type="button" id="identityEdit" class="web-check-btn" style="padding:4px 10px;font-size:0.75rem;">Modifier</button>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <svg width="18" height="18" viewBox="0 0 24 24" style="vertical-align:-3px;margin-right:4px;flex-shrink:0;">
+      <path d="M12 2 L23 21 L1 21 Z" fill="none" stroke="#C1554F" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="11" y="8.5" width="2" height="6.5" rx="1" fill="#C1554F"/>
+      <circle cx="12" cy="17.5" r="1.15" fill="#C1554F"/>
+    </svg><strong style="color:var(--danger);font-weight:700;">À lire avant utilisation.</strong> Glycotrace calcule une <em>estimation éducative</em> à partir de valeurs d'index glycémique publiées et des quantités saisies. Il ne mesure pas votre glycémie réelle et ne remplace en aucun cas un lecteur de glycémie, un capteur (CGM) ou l'avis de votre médecin ou diabétologue. La réponse glycémique réelle dépend de nombreux facteurs individuels (sensibilité à l'insuline, activité physique, association d'aliments, état de santé). En cas de doute sur votre traitement ou vos doses d'insuline, consultez un professionnel de santé.
+    <br><br>
+    <span style="font-size:0.82rem;">Les valeurs de <strong>glucides</strong> intégrées à Glycotrace sont issues de la table officielle <strong>Ciqual (ANSES, édition 2020)</strong>, aliment par aliment, avec une correspondance la plus proche possible pour les plats composites. Les valeurs d'<strong>index glycémique</strong> restent des estimations pédagogiques générales (Ciqual ne fournit pas l'IG). Les deux peuvent varier selon la recette, la cuisson ou la marque. Source complète : <a href="https://ciqual.anses.fr/" target="_blank" rel="noopener" style="color:var(--danger);">ciqual.anses.fr</a>.</span>
+    </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Ajouter un aliment</h2>
+      <div class="tabs">
+        <div class="tab active" data-tab="list">Liste d'aliments</div>
+        <div class="tab" data-tab="manual">Saisie manuelle</div>
+      </div>
+
+      <div id="tab-list">
+        <label for="mealTypeList">Repas</label>
+        <select id="mealTypeList" class="meal-select">
+          <option value="Petit déjeuner">Petit déjeuner</option>
+          <option value="Déjeuner">Déjeuner</option>
+          <option value="Collation">Collation</option>
+          <option value="Dîner">Dîner</option>
+        </select>
+        <label for="foodSearch">Rechercher un aliment</label>
+        <input type="text" id="foodSearch" placeholder="Ex : pomme, riz, saumon...">
+        <label for="foodSelect">Aliment</label>
+        <select id="foodSelect"></select>
+        <div class="food-meta" id="dishNote" style="display:none;color:var(--warn);"></div>
+        <div class="row2">
+          <div>
+            <label for="qtyList">Quantité (g ou ml)</label>
+            <input type="number" id="qtyList" min="1" value="100">
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <div class="food-meta" id="foodMetaPreview"></div>
+          </div>
+        </div>
+        <button class="primary" id="addFromList">Ajouter au journal</button>
+      </div>
+
+      <div id="tab-manual" style="display:none;">
+        <label for="mealTypeManual">Repas</label>
+        <select id="mealTypeManual" class="meal-select">
+          <option value="Petit déjeuner">Petit déjeuner</option>
+          <option value="Déjeuner">Déjeuner</option>
+          <option value="Collation">Collation</option>
+          <option value="Dîner">Dîner</option>
+        </select>
+        <label for="manualName">Nom de l'aliment</label>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="manualName" placeholder="Ex : Tarte aux pommes maison" style="flex:1;" spellcheck="true" lang="fr">
+          <button type="button" id="webCheckBtn" class="web-check-btn">Vérifier sur le web</button>
+        </div>
+        <p class="curve-caption" style="margin-top:4px;color:var(--danger);font-weight:700;">Le nom saisi sera automatiquement copié dans le presse-papier pour être collé dans la barre de recherche de Ciqual, qui s'ouvrira dans un nouvel onglet.</p>
+        <div class="food-meta" id="webCheckStatus"></div>
+        <div class="row2">
+          <div>
+            <label for="manualQty">Quantité (g)</label>
+            <input type="number" id="manualQty" min="1" value="100">
+          </div>
+          <div>
+            <label for="manualCarbs">Glucides / 100 g</label>
+            <input type="number" id="manualCarbs" min="0" value="0">
+          </div>
+        </div>
+        <label for="manualGI">Index glycémique estimé (0–100)</label>
+        <input type="number" id="manualGI" min="0" max="130" value="0">
+        <div class="comp-row" style="display:flex;gap:10px;margin-top:14px;">
+          <button class="primary" id="addManual" style="margin-top:0;">Ajouter au journal</button>
+          <button class="reset-btn" id="addToFoodList" style="margin-top:0;background:var(--primary);border-color:var(--primary);color:#fff;">Ajouter à la liste des aliments</button>
+        </div>
+        <p class="curve-caption" id="addToFoodListNote" style="margin-top:8px;"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Résumé du jour</h2>
+      <div class="summary-stats">
+        <div class="stat">
+          <div class="num" id="statCarbs">0 g</div>
+          <div class="lbl">Glucides totaux</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="statGL">0</div>
+          <div class="lbl">Charge glycémique</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="statMeals">0</div>
+          <div class="lbl">Entrées</div>
+        </div>
+      </div>
+      <div id="glBadgeWrap"></div>
+
+      <svg id="curve" viewBox="0 0 500 180" preserveAspectRatio="none"></svg>
+      <p class="curve-caption">Courbe d'impact relatif estimé sur ~3 heures (unité indicative, pas des mg/dL réels), calculée à partir de l'index glycémique et de la charge glycémique de chaque entrée du journal.</p>
+    </div>
+  </div>
+
+  <div class="card log-card">
+    <h2>Journal du jour</h2>
+    <div id="logContainer"></div>
+    <div class="empty-log" id="emptyLog" style="display:none;">Aucune entrée pour cette journée. Ajoutez un aliment ci-dessus.</div>
+  </div>
+
+  <div class="card" id="doseCard">
+    <h2>Calculateur de dose (à partir de votre prescription)</h2>
+    <p class="curve-caption" style="margin-top:-8px;margin-bottom:14px;">
+      Ce calcul applique <strong>uniquement les paramètres que votre médecin ou diabétologue vous a personnellement prescrits</strong>.
+      Ce n'est pas une recommandation médicale : Glycotrace ne connaît pas votre traitement, il fait juste l'opération arithmétique
+      à partir des valeurs que vous entrez. Vérifiez toujours le résultat par rapport à votre schéma de traitement habituel,
+      et en cas de doute, contactez votre équipe soignante.
+    </p>
+
+    <div class="row2">
+      <div>
+        <label for="ratioInput">Ratio insuline/glucides<br><span style="font-weight:400;text-transform:none;">(unités pour 10 g de glucides)</span></label>
+        <input type="number" id="ratioInput" min="0" step="0.1" placeholder="ex : 1">
+      </div>
+      <div>
+        <label for="doseCarbsInput">Glucides pris en compte (g)</label>
+        <input type="number" id="doseCarbsInput" min="0">
+      </div>
+    </div>
+    <p class="curve-caption" style="margin-top:4px;">Le champ glucides se met à jour automatiquement en fonction du repas sélectionné ci-dessus — modifiable si besoin.</p>
+
+    <div id="doseResult" style="margin-top:16px;"></div>
+  </div>
+
+  <div class="card" id="historyCard">
+    <h2>Historique (30 derniers jours)</h2>
+    <p class="curve-caption" style="margin-top:-8px;margin-bottom:14px;">
+      Les journées sont conservées 30 jours glissants, glucides et charge glycémique répartis par repas.
+      Au-delà de 30 jours, une journée est automatiquement effacée de cet appareil.
+    </p>
+    <button class="primary" id="printHistoryBtn">Générer et imprimer l'historique</button>
+    <div id="printReport"></div>
+  </div>
+
+  <footer class="note">Données enregistrées uniquement dans votre navigateur, sur cet appareil. Aucune information n'est envoyée en ligne.</footer>
+</div>
+
+<script>
+const FOODS = [
+  // Pains
+  {name:"Pain blanc (baguette)", gi:70, carbs:58.3, sub:"Pains"},
+  {name:"Pain complet", gi:50, carbs:40.8, sub:"Pains"},
+
+  // Féculents
+  {name:"Riz blanc, cuit", gi:73, carbs:31.8, sub:"Féculents"},
+  {name:"Riz complet, cuit", gi:50, carbs:32.6, sub:"Féculents"},
+  {name:"Pâtes, cuites", gi:50, carbs:25.0, sub:"Féculents"},
+  {name:"Pomme de terre bouillie", gi:78, carbs:16.7, sub:"Féculents"},
+  {name:"Pomme de terre, frites", gi:75, carbs:39.4, sub:"Féculents"},
+  {name:"Lentilles, cuites", gi:32, carbs:12.2, sub:"Féculents"},
+  {name:"Pois chiches, cuits", gi:28, carbs:17.7, sub:"Féculents"},
+
+  // Fruits
+  {name:"Pomme", gi:36, carbs:10.7, sub:"Fruits"},
+  {name:"Banane", gi:51, carbs:19.7, sub:"Fruits"},
+  {name:"Orange", gi:43, carbs:8.0, sub:"Fruits"},
+  {name:"Raisin", gi:59, carbs:15.7, sub:"Fruits"},
+  {name:"Pastèque", gi:76, carbs:8.3, sub:"Fruits"},
+  {name:"Ananas", gi:66, carbs:11.7, sub:"Fruits"},
+
+  // Produits laitiers
+  {name:"Lait entier", gi:27, carbs:4.9, sub:"Produits laitiers"},
+  {name:"Yaourt nature", gi:35, carbs:3.5, sub:"Produits laitiers"},
+  {name:"Glace", gi:51, carbs:24.9, sub:"Produits laitiers"},
+
+  // Légumes
+  {name:"Carotte, cuite", gi:39, carbs:2.6, sub:"Légumes"},
+  {name:"Carotte, crue", gi:16, carbs:7.6, sub:"Légumes"},
+
+  // Céréales & petit-déjeuner
+  {name:"Céréales corn flakes", gi:81, carbs:82.8, sub:"Céréales"},
+
+  // Sucres & douceurs simples
+  {name:"Chocolat noir", gi:23, carbs:42.9, sub:"Sucres simples"},
+  {name:"Chocolat au lait", gi:43, carbs:55.6, sub:"Sucres simples"},
+  {name:"Miel", gi:61, carbs:81.7, sub:"Sucres simples"},
+  {name:"Sucre blanc", gi:65, carbs:99.8, sub:"Sucres simples"},
+  {name:"Biscuits sablés", gi:64, carbs:64.8, sub:"Sucres simples"},
+
+  // Boissons
+  {name:"Jus d'orange", gi:50, carbs:9.6, sub:"Boissons"},
+  {name:"Soda cola", gi:63, carbs:10.2, sub:"Boissons"},
+
+  // Autres
+  {name:"Pizza", gi:60, carbs:27.3, sub:"Autres"},
+
+  // Plats cuisinés (valeurs plus approximatives : très variables selon la recette)
+  {name:"Couscous complet (semoule, légumes, viande)", gi:65, carbs:14.0, dish:true},
+  {name:"Blanquette de veau", gi:40, carbs:3.1, dish:true},
+  {name:"Bœuf bourguignon", gi:40, carbs:4.2, dish:true},
+  {name:"Ratatouille", gi:35, carbs:5.0, dish:true},
+  {name:"Gratin dauphinois", gi:70, carbs:14.5, dish:true},
+  {name:"Lasagnes à la bolognaise", gi:55, carbs:13.5, dish:true},
+  {name:"Hachis parmentier", gi:68, carbs:9.4, dish:true},
+  {name:"Cassoulet", gi:45, carbs:9.4, dish:true},
+  {name:"Quiche lorraine", gi:45, carbs:21.0, dish:true},
+  {name:"Tartiflette", gi:60, carbs:13.5, dish:true},
+  {name:"Poulet basquaise avec riz", gi:60, carbs:17.0, dish:true},
+  {name:"Risotto", gi:65, carbs:18.4, dish:true},
+  {name:"Curry de légumes avec riz", gi:60, carbs:21.0, dish:true},
+  {name:"Chili con carne", gi:40, carbs:13.0, dish:true},
+  {name:"Soupe de légumes", gi:30, carbs:5.1, dish:true},
+  {name:"Salade César", gi:25, carbs:4.9, dish:true},
+  {name:"Choucroute garnie", gi:35, carbs:2.8, dish:true},
+  {name:"Moussaka", gi:50, carbs:5.2, dish:true},
+  {name:"Paella", gi:65, carbs:17.1, dish:true},
+  {name:"Sushi, plateau mixte", gi:55, carbs:26.9, dish:true},
+  {name:"Burger avec frites", gi:65, carbs:34.0, dish:true},
+  {name:"Kebab (sandwich)", gi:60, carbs:20.5, dish:true},
+  {name:"Sandwich jambon-beurre", gi:65, carbs:33.7, dish:true},
+
+  // Viandes & poissons (glucides quasi nuls, IG non significatif seuls)
+  {name:"Poulet, blanc, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Dinde, cuite", gi:0, carbs:0.5, cat:"meat"},
+  {name:"Bœuf, steak, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Porc, filet, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Agneau, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Jambon blanc", gi:0, carbs:0.8, cat:"meat"},
+  {name:"Merguez / saucisse, cuite", gi:0, carbs:1.8, cat:"meat"},
+  {name:"Bacon, cuit", gi:0, carbs:0.7, cat:"meat"},
+  {name:"Œufs, cuits (2 œufs ~100 g)", gi:0, carbs:0.5, cat:"meat"},
+  {name:"Saumon, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Thon, cuit ou en conserve", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Cabillaud / morue, cuit", gi:0, carbs:0.0, cat:"meat"},
+  {name:"Crevettes, cuites", gi:0, carbs:1.9, cat:"meat"},
+  {name:"Sardines (conserve, égouttées)", gi:0, carbs:0.5, cat:"meat"},
+
+  // Sauces (glucides très variables selon la recette)
+  {name:"Mayonnaise", gi:0, carbs:2.6, cat:"sauce"},
+  {name:"Vinaigrette huile/vinaigre", gi:0, carbs:4.6, cat:"sauce"},
+  {name:"Moutarde", gi:35, carbs:4.3, cat:"sauce"},
+  {name:"Ketchup", gi:55, carbs:21.4, cat:"sauce"},
+  {name:"Sauce barbecue", gi:55, carbs:30.3, cat:"sauce"},
+  {name:"Sauce soja", gi:20, carbs:3.6, cat:"sauce"},
+  {name:"Sauce tomate (type pâtes)", gi:35, carbs:7.3, cat:"sauce"},
+  {name:"Sauce béchamel", gi:40, carbs:6.2, cat:"sauce"},
+  {name:"Sauce au poivre", gi:30, carbs:4.8, cat:"sauce"},
+  {name:"Sauce curry", gi:40, carbs:10.6, cat:"sauce"},
+
+  // Sucreries & pâtisseries
+  {name:"Bonbons gélifiés (type Haribo)", gi:80, carbs:80.2, cat:"sweet"},
+  {name:"Croissant", gi:67, carbs:40.4, cat:"sweet"},
+  {name:"Bonbon dur / acidulé", gi:70, carbs:95.4, cat:"sweet"},
+  {name:"Chamallow", gi:85, carbs:78.7, cat:"sweet"},
+  {name:"Barre chocolatée (type Mars/Snickers)", gi:65, carbs:66.4, cat:"sweet"},
+  {name:"Gâteau au chocolat", gi:55, carbs:54.6, cat:"sweet"},
+  {name:"Gâteau au yaourt", gi:60, carbs:51.8, cat:"sweet"},
+  {name:"Brownie", gi:55, carbs:50.6, cat:"sweet"},
+  {name:"Muffin", gi:60, carbs:48.9, cat:"sweet"},
+  {name:"Cookie", gi:60, carbs:59.0, cat:"sweet"},
+  {name:"Madeleine", gi:60, carbs:53.5, cat:"sweet"},
+  {name:"Donut", gi:65, carbs:39.4, cat:"sweet"},
+  {name:"Beignet", gi:65, carbs:45.6, cat:"sweet"},
+  {name:"Pain au chocolat", gi:65, carbs:45.4, cat:"sweet"},
+  {name:"Tarte aux pommes", gi:50, carbs:32.7, cat:"sweet"},
+  {name:"Barre de céréales", gi:65, carbs:73.0, cat:"sweet"},
+  {name:"Pâte à tartiner (type Nutella)", gi:55, carbs:57.9, cat:"sweet"},
+  {name:"Confiture", gi:65, carbs:60.2, cat:"sweet"},
+];
+
+const dateInput = document.getElementById('dateInput');
+const foodSelect = document.getElementById('foodSelect');
+const foodMetaPreview = document.getElementById('foodMetaPreview');
+
+function todayStr(){
+  const d = new Date();
+  return d.toISOString().slice(0,10);
+}
+dateInput.value = todayStr();
+
+// --- Notice d'utilisation ---
+const noticeOverlay = document.getElementById('noticeOverlay');
+document.getElementById('noticeBtn').addEventListener('click', ()=>{
+  noticeOverlay.classList.add('open');
+});
+document.getElementById('noticeClose').addEventListener('click', ()=>{
+  noticeOverlay.classList.remove('open');
+});
+noticeOverlay.addEventListener('click', (e)=>{
+  if(e.target === noticeOverlay) noticeOverlay.classList.remove('open');
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') noticeOverlay.classList.remove('open');
+});
+
+document.getElementById('resetAllBtn').addEventListener('click', ()=>{
+  const confirmed = window.confirm(
+    "Cette action va effacer DÉFINITIVEMENT toutes les données de Glycotrace sur cet appareil : " +
+    "historique complet (30 jours), identité, aliments ajoutés manuellement et paramètres du calculateur.\n\n" +
+    "Cette action est irréversible. Continuer ?"
+  );
+  if(!confirmed) return;
+
+  const keysToRemove = [];
+  for(let i=0;i<localStorage.length;i++){
+    const key = localStorage.key(i);
+    if(key && key.startsWith('glycotrace:')) keysToRemove.push(key);
+  }
+  keysToRemove.forEach(k => localStorage.removeItem(k));
+
+  window.location.reload();
+});
+
+// --- Identité (Nom / Prénom) ---
+const IDENTITY_KEY = 'glycotrace:identity';
+const identityForm = document.getElementById('identityForm');
+const identityDisplay = document.getElementById('identityDisplay');
+const identityName = document.getElementById('identityName');
+const identityFirstName = document.getElementById('identityFirstName');
+const identityLastName = document.getElementById('identityLastName');
+
+function getIdentity(){
+  try{ return JSON.parse(localStorage.getItem(IDENTITY_KEY)) || null; }
+  catch(e){ return null; }
+}
+
+function showIdentityDisplay(identity){
+  identityName.textContent = `${identity.prenom} ${identity.nom}`.trim();
+  identityForm.style.display = 'none';
+  identityDisplay.style.display = 'flex';
+}
+
+function showIdentityForm(){
+  identityForm.style.display = 'flex';
+  identityDisplay.style.display = 'none';
+}
+
+const existingIdentity = getIdentity();
+if(existingIdentity && (existingIdentity.prenom || existingIdentity.nom)){
+  identityFirstName.value = existingIdentity.prenom || '';
+  identityLastName.value = existingIdentity.nom || '';
+  showIdentityDisplay(existingIdentity);
+}
+
+document.getElementById('identitySubmit').addEventListener('click', ()=>{
+  const identity = {
+    prenom: identityFirstName.value.trim(),
+    nom: identityLastName.value.trim(),
+  };
+  if(!identity.prenom && !identity.nom) return;
+  localStorage.setItem(IDENTITY_KEY, JSON.stringify(identity));
+  showIdentityDisplay(identity);
+});
+
+document.getElementById('identityEdit').addEventListener('click', showIdentityForm);
+
+const GROUP_LABELS = {
+  meat: 'Viandes & poissons',
+  sauce: 'Sauces',
+  sweet: 'Sucreries & pâtisseries',
+  dish: 'Plats cuisinés',
+  manual: 'Ajout manuel',
+};
+const GROUP_ORDER = ['meat', 'sauce', 'sweet', 'dish', 'manual'];
+const SUB_ORDER = ['Pains', 'Féculents', 'Fruits', 'Produits laitiers', 'Légumes', 'Céréales', 'Sucres simples', 'Boissons', 'Autres'];
+
+const CUSTOM_FOODS_KEY = 'glycotrace:customFoods';
+function loadCustomFoods(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(CUSTOM_FOODS_KEY)) || [];
+    raw.forEach(f => FOODS.push({...f, cat:'manual'}));
+  } catch(e){}
+}
+loadCustomFoods();
+
+function catOf(f){
+  if(f.dish) return 'dish';
+  return f.cat || 'simple';
+}
+
+function normalize(str){
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+}
+
+function slugify(str){
+  return normalize(str).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+function populateFoodSelect(filterText){
+  const query = normalize(filterText || '').trim();
+
+  // Sous-groupes pour les aliments simples
+  const simpleGroups = {};
+  const simpleItems = {};
+  SUB_ORDER.forEach(s => { simpleGroups[s] = document.createElement('optgroup'); simpleGroups[s].label = s; simpleGroups[s].className = 'og-' + slugify(s); simpleItems[s] = []; });
+
+  // Groupes pour les autres catégories
+  const groups = {};
+  const groupItems = {};
+  GROUP_ORDER.forEach(g => { groups[g] = document.createElement('optgroup'); groups[g].label = GROUP_LABELS[g]; groups[g].className = 'og-' + g; groupItems[g] = []; });
+
+  let matchCount = 0;
+  FOODS.forEach((f,i)=>{
+    if(query && !normalize(f.name).includes(query)) return;
+    const cat = catOf(f);
+    if(cat === 'simple'){
+      const sub = SUB_ORDER.includes(f.sub) ? f.sub : 'Autres';
+      simpleItems[sub].push({name:f.name, i});
+    } else {
+      groupItems[cat].push({name:f.name, i});
+    }
+    matchCount++;
+  });
+
+  const byName = (a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base'});
+
+  SUB_ORDER.forEach(s=>{
+    simpleItems[s].sort(byName).forEach(item=>{
+      const opt = document.createElement('option');
+      opt.value = item.i;
+      opt.textContent = item.name;
+      simpleGroups[s].appendChild(opt);
+    });
+  });
+  GROUP_ORDER.forEach(g=>{
+    groupItems[g].sort(byName).forEach(item=>{
+      const opt = document.createElement('option');
+      opt.value = item.i;
+      opt.textContent = item.name;
+      groups[g].appendChild(opt);
+    });
+  });
+
+  foodSelect.innerHTML = '';
+  SUB_ORDER.forEach(s=>{
+    if(simpleGroups[s].children.length > 0) foodSelect.appendChild(simpleGroups[s]);
+  });
+  GROUP_ORDER.forEach(g=>{
+    if(groups[g].children.length > 0) foodSelect.appendChild(groups[g]);
+  });
+
+  if(matchCount === 0){
+    const opt = document.createElement('option');
+    opt.textContent = 'Aucun aliment trouvé';
+    opt.disabled = true;
+    foodSelect.appendChild(opt);
+  }
+}
+populateFoodSelect('');
+
+function updateFoodPreview(){
+  const f = FOODS[foodSelect.value];
+  if(!f){
+    foodMetaPreview.textContent = '';
+    document.getElementById('dishNote').style.display = 'none';
+    return;
+  }
+  foodMetaPreview.textContent = `IG ${f.gi} · ${f.carbs} g glucides / 100`;
+  const note = document.getElementById('dishNote');
+  if(f.dish){
+    note.style.display = 'block';
+    note.textContent = 'Plat composite : valeurs approximatives, très variables selon la recette et les portions.';
+  } else {
+    note.style.display = 'none';
+  }
+}
+foodSelect.addEventListener('change', updateFoodPreview);
+updateFoodPreview();
+
+const foodSearch = document.getElementById('foodSearch');
+foodSearch.addEventListener('input', ()=>{
+  populateFoodSelect(foodSearch.value);
+  updateFoodPreview();
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-list').style.display = tab.dataset.tab==='list' ? 'block':'none';
+    document.getElementById('tab-manual').style.display = tab.dataset.tab==='manual' ? 'block':'none';
+  });
+});
+
+function storageKey(dateStr){ return 'glycotrace:' + dateStr; }
+
+function loadLog(){
+  const raw = localStorage.getItem(storageKey(dateInput.value));
+  try{ return raw ? JSON.parse(raw) : []; } catch(e){ return []; }
+}
+function saveLog(entries){
+  localStorage.setItem(storageKey(dateInput.value), JSON.stringify(entries));
+}
+
+function addEntry(entry){
+  const entries = loadLog();
+  entries.push(entry);
+  saveLog(entries);
+  render();
+}
+
+const mealTypeList = document.getElementById('mealTypeList');
+const mealTypeManual = document.getElementById('mealTypeManual');
+
+function syncMealSelectColor(select){
+  select.setAttribute('data-meal', select.value);
+}
+mealTypeList.value = 'Petit déjeuner';
+mealTypeManual.value = 'Petit déjeuner';
+syncMealSelectColor(mealTypeList);
+syncMealSelectColor(mealTypeManual);
+
+function resetDoseCalcOnMealChange(){
+  ratioInput.value = '';
+  doseCarbsInput.value = '0';
+  computeDose();
+}
+mealTypeList.addEventListener('change', ()=>{
+  mealTypeManual.value = mealTypeList.value;
+  syncMealSelectColor(mealTypeList);
+  syncMealSelectColor(mealTypeManual);
+  resetDoseCalcOnMealChange();
+});
+mealTypeManual.addEventListener('change', ()=>{
+  mealTypeList.value = mealTypeManual.value;
+  syncMealSelectColor(mealTypeList);
+  syncMealSelectColor(mealTypeManual);
+  resetDoseCalcOnMealChange();
+});
+
+document.getElementById('addFromList').addEventListener('click', ()=>{
+  const f = FOODS[foodSelect.value];
+  const qty = parseFloat(document.getElementById('qtyList').value) || 0;
+  if(qty <= 0) return;
+  const carbsG = (f.carbs * qty) / 100;
+  const gl = (f.gi * carbsG) / 100;
+  addEntry({name:f.name, qty, carbsG, gi:f.gi, gl, meal:mealTypeList.value});
+  document.getElementById('qtyList').value = 100;
+});
+
+const webCheckBtn = document.getElementById('webCheckBtn');
+const webCheckStatus = document.getElementById('webCheckStatus');
+
+document.getElementById('manualName').addEventListener('input', (e)=>{
+  if(e.target.value.trim() === ''){
+    webCheckStatus.textContent = '';
+  }
+});
+
+webCheckBtn.addEventListener('click', async ()=>{
+  const term = document.getElementById('manualName').value.trim();
+  if(!term){
+    webCheckStatus.style.color = 'var(--danger)';
+    webCheckStatus.textContent = "Indiquez un nom d'aliment avant de lancer la recherche.";
+    return;
+  }
+
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(term);
+    }
+  } catch(e){ /* le presse-papier peut être refusé par le navigateur, ce n'est pas bloquant */ }
+
+  window.open('https://ciqual.anses.fr/', '_blank', 'noopener');
+
+  webCheckStatus.style.color = 'var(--primary-dark)';
+  webCheckStatus.innerHTML = `« ${term} » a été copié dans le presse-papier et le site <strong>Ciqual (ANSES)</strong> vient de s'ouvrir dans un nouvel onglet. Collez le nom dans sa barre de recherche, repérez la valeur de glucides pour 100 g, puis reportez-la vous-même dans le champ ci-dessous. L'index glycémique n'est pas fourni par Ciqual et reste à renseigner par vos soins.`;
+});
+
+document.getElementById('addManual').addEventListener('click', ()=>{
+  const name = document.getElementById('manualName').value.trim() || 'Aliment sans nom';
+  const qty = parseFloat(document.getElementById('manualQty').value) || 0;
+  const carbsPer100 = parseFloat(document.getElementById('manualCarbs').value) || 0;
+  const gi = parseFloat(document.getElementById('manualGI').value) || 0;
+  if(qty <= 0) return;
+  const carbsG = (carbsPer100 * qty) / 100;
+  const gl = (gi * carbsG) / 100;
+  addEntry({name, qty, carbsG, gi, gl, meal:mealTypeManual.value});
+  document.getElementById('manualName').value = '';
+  webCheckStatus.textContent = '';
+});
+
+document.getElementById('addToFoodList').addEventListener('click', ()=>{
+  const nameInput = document.getElementById('manualName');
+  const name = nameInput.value.trim();
+  const carbsPer100 = parseFloat(document.getElementById('manualCarbs').value) || 0;
+  const gi = parseFloat(document.getElementById('manualGI').value) || 0;
+  const note = document.getElementById('addToFoodListNote');
+
+  if(!name){
+    note.style.color = 'var(--danger)';
+    note.textContent = 'Indiquez un nom d\'aliment avant de l\'ajouter à la liste.';
+    return;
+  }
+
+  const newFood = { name, gi, carbs: carbsPer100, cat: 'manual' };
+  FOODS.push(newFood);
+
+  let stored = [];
+  try{ stored = JSON.parse(localStorage.getItem(CUSTOM_FOODS_KEY)) || []; } catch(e){}
+  stored.push({ name, gi, carbs: carbsPer100 });
+  localStorage.setItem(CUSTOM_FOODS_KEY, JSON.stringify(stored));
+
+  populateFoodSelect(foodSearch.value);
+  note.style.color = 'var(--primary-dark)';
+  note.textContent = `« ${name} » a été ajouté à la liste, dans la catégorie « Ajout manuel ».`;
+});
+
+function deleteEntry(index){
+  const entries = loadLog();
+  entries.splice(index,1);
+  saveLog(entries);
+  render();
+}
+
+function glCategory(totalGL){
+  if(totalGL < 10) return {label:'Charge faible', cls:'low'};
+  if(totalGL < 20) return {label:'Charge modérée', cls:'med'};
+  return {label:'Charge élevée', cls:'high'};
+}
+
+function drawCurve(entries){
+  const svg = document.getElementById('curve');
+  svg.innerHTML = '';
+  const W = 500, H = 180, baseline = H - 24;
+
+  // grid baseline
+  const base = document.createElementNS('http://www.w3.org/2000/svg','line');
+  base.setAttribute('x1',0); base.setAttribute('x2',W);
+  base.setAttribute('y1',baseline); base.setAttribute('y2',baseline);
+  base.setAttribute('stroke','#D8E0DA'); base.setAttribute('stroke-width','1');
+  svg.appendChild(base);
+
+  if(entries.length === 0){
+    const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x', W/2); txt.setAttribute('y', H/2);
+    txt.setAttribute('text-anchor','middle');
+    txt.setAttribute('fill','#5B6B62');
+    txt.setAttribute('font-size','13');
+    txt.setAttribute('font-family','Inter, sans-serif');
+    txt.textContent = 'Ajoutez une entrée pour voir la courbe estimée';
+    svg.appendChild(txt);
+    return;
+  }
+
+  // sum of bump functions across 180 minutes, one point per minute
+  const minutes = 180;
+  const points = new Array(minutes+1).fill(0);
+  entries.forEach(e=>{
+    // peak time earlier & sharper for high-GI foods, later & flatter for low-GI
+    const peakTime = 70 - (e.gi/100)*35; // ~35 to 70 min
+    const width = 35 + (100-e.gi)/100*40; // spread
+    const amplitude = e.gl; // relative units
+    for(let t=0;t<=minutes;t++){
+      const x = t - peakTime;
+      points[t] += amplitude * Math.exp(-(x*x)/(2*width*width));
+    }
+  });
+  const maxVal = Math.max(...points, 1);
+
+  let d = '';
+  for(let t=0;t<=minutes;t++){
+    const x = (t/minutes) * W;
+    const y = baseline - (points[t]/maxVal) * (baseline - 20);
+    d += (t===0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+  }
+
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  defs.innerHTML = `
+    <linearGradient id="curveFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E8A76" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1E8A76" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="curveStroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#146357"/>
+      <stop offset="55%" stop-color="#1E8A76"/>
+      <stop offset="100%" stop-color="#E08A4F"/>
+    </linearGradient>
+  `;
+  svg.appendChild(defs);
+
+  const areaPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+  const fillD = d + `L${W},${baseline} L0,${baseline} Z`;
+  areaPath.setAttribute('d', fillD);
+  areaPath.setAttribute('fill', 'url(#curveFill)');
+  svg.appendChild(areaPath);
+
+  const linePath = document.createElementNS('http://www.w3.org/2000/svg','path');
+  linePath.setAttribute('d', d);
+  linePath.setAttribute('fill','none');
+  linePath.setAttribute('stroke','url(#curveStroke)');
+  linePath.setAttribute('stroke-width','3');
+  linePath.setAttribute('stroke-linecap','round');
+  svg.appendChild(linePath);
+
+  // time labels
+  [0,60,120,180].forEach(t=>{
+    const x = (t/minutes)*W;
+    const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x', Math.min(Math.max(x,14),W-14));
+    txt.setAttribute('y', H-6);
+    txt.setAttribute('text-anchor','middle');
+    txt.setAttribute('fill','#5B6B62');
+    txt.setAttribute('font-size','10');
+    txt.setAttribute('font-family','IBM Plex Mono, monospace');
+    txt.textContent = t===0?'0 min':t+' min';
+    svg.appendChild(txt);
+  });
+}
+
+function render(){
+  const entries = loadLog();
+  const totalCarbs = entries.reduce((s,e)=>s+e.carbsG,0);
+  const totalGL = entries.reduce((s,e)=>s+e.gl,0);
+
+  document.getElementById('statCarbs').textContent = totalCarbs.toFixed(0) + ' g';
+  document.getElementById('statGL').textContent = totalGL.toFixed(1);
+  document.getElementById('statMeals').textContent = entries.length;
+
+  const cat = glCategory(totalGL);
+  document.getElementById('glBadgeWrap').innerHTML =
+    `<span class="badge ${cat.cls}">${cat.label} — charge glycémique ${totalGL.toFixed(1)}</span>`;
+
+  const container = document.getElementById('logContainer');
+  container.innerHTML = '';
+  document.getElementById('emptyLog').style.display = entries.length===0 ? 'block' : 'none';
+
+  const MEAL_ORDER = ['Petit déjeuner', 'Déjeuner', 'Collation', 'Dîner'];
+  const indexed = entries.map((e,i)=>({...e, _i:i}));
+
+  MEAL_ORDER.forEach(mealName=>{
+    const group = indexed.filter(e => (e.meal || 'Collation') === mealName);
+    if(group.length === 0) return;
+
+    const groupCarbs = group.reduce((s,e)=>s+e.carbsG,0);
+    const groupGL = group.reduce((s,e)=>s+e.gl,0);
+
+    const mealClass = {
+      'Petit déjeuner':'breakfast',
+      'Déjeuner':'lunch',
+      'Dîner':'dinner',
+      'Collation':'snack'
+    }[mealName] || 'snack';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'meal-group ' + mealClass;
+    wrap.innerHTML = `
+      <div class="meal-header">
+        <span>${mealName}</span>
+        <span class="meal-sub">${groupCarbs.toFixed(1)} g glucides · charge ${groupGL.toFixed(1)}</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Aliment</th>
+            <th class="num">Qté</th>
+            <th class="num">Glucides</th>
+            <th class="num">IG</th>
+            <th class="num">Charge glyc.</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    `;
+    const tbody = wrap.querySelector('tbody');
+    group.forEach(e=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${e.name}</td>
+        <td class="num">${e.qty} g</td>
+        <td class="num">${e.carbsG.toFixed(1)} g</td>
+        <td class="num">${e.gi}</td>
+        <td class="num">${e.gl.toFixed(1)}</td>
+        <td><button class="del-btn" title="Supprimer" data-i="${e._i}">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+    container.appendChild(wrap);
+  });
+
+  container.querySelectorAll('.del-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> deleteEntry(parseInt(btn.dataset.i)));
+  });
+
+  drawCurve(entries);
+}
+
+dateInput.addEventListener('change', render);
+render();
+
+// --- Calculateur de dose ---
+const ratioInput = document.getElementById('ratioInput');
+const corrFactorInput = document.getElementById('corrFactorInput');
+const doseCarbsInput = document.getElementById('doseCarbsInput');
+const doseResult = document.getElementById('doseResult');
+
+const SETTINGS_KEY = 'glycotrace:settings';
+
+function loadSettings(){
+  try{ return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveSettings(){
+  const s = {
+    ratio: ratioInput.value,
+  };
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+}
+
+function applySettings(){
+  const s = loadSettings();
+  if(s.ratio) ratioInput.value = s.ratio;
+}
+applySettings();
+
+function prefillDoseCarbs(){
+  const entries = loadLog();
+  const currentMeal = mealTypeList.value || mealTypeManual.value;
+  const mealEntries = entries.filter(e => (e.meal || 'Collation') === currentMeal);
+  const totalCarbs = mealEntries.reduce((s,e)=>s+e.carbsG,0);
+  doseCarbsInput.value = totalCarbs.toFixed(1);
+}
+prefillDoseCarbs();
+
+function computeDose(){
+  const ratio = parseFloat(ratioInput.value);
+  const carbs = parseFloat(doseCarbsInput.value);
+
+  if(!ratio || isNaN(carbs)){
+    doseResult.innerHTML = `<p class="curve-caption">Renseignez au moins le ratio insuline/glucides et les glucides pour voir un résultat.</p>`;
+    return;
+  }
+
+  const mealDose = (carbs * ratio) / 10;
+  let html = `<div class="stat" style="text-align:left;padding:14px 16px;">
+      <div class="lbl" style="margin-bottom:4px;">Dose liée aux glucides</div>
+      <div class="num" style="font-size:1.4rem;">${mealDose.toFixed(1)} U</div>
+    </div>`;
+
+  html += `<p class="curve-caption" style="margin-top:12px;">Résultat arrondi à titre indicatif — ajustez selon les consignes de votre équipe soignante (arrondi, dose minimale, etc.).</p>`;
+  doseResult.innerHTML = html;
+}
+
+[ratioInput, doseCarbsInput].forEach(el=>{
+  el.addEventListener('input', ()=>{
+    saveSettings();
+    computeDose();
+  });
+});
+
+// Recompute prefill + dose whenever the log changes
+const originalRender = render;
+render = function(){
+  originalRender();
+  prefillDoseCarbs();
+  computeDose();
+};
+
+computeDose();
+
+// --- Historique 30 jours + purge automatique ---
+const MEAL_ORDER_FULL = ['Petit déjeuner', 'Déjeuner', 'Collation', 'Dîner'];
+const MEAL_CLASS = {
+  'Petit déjeuner':'breakfast', 'Déjeuner':'lunch', 'Dîner':'dinner', 'Collation':'snack'
+};
+
+function listStoredDates(){
+  const dates = [];
+  for(let i=0;i<localStorage.length;i++){
+    const key = localStorage.key(i);
+    if(key && key.startsWith('glycotrace:') && key !== SETTINGS_KEY){
+      const d = key.slice('glycotrace:'.length);
+      if(/^\d{4}-\d{2}-\d{2}$/.test(d)) dates.push(d);
+    }
+  }
+  return dates.sort();
+}
+
+function purgeOldEntries(){
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+  listStoredDates().forEach(d=>{
+    if(new Date(d) < cutoff){
+      localStorage.removeItem(storageKey(d));
+    }
+  });
+}
+purgeOldEntries();
+
+function formatDateLabel(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+}
+
+function buildPrintReport(){
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+  const dates = listStoredDates().filter(d => new Date(d) >= cutoff).sort().reverse();
+
+  const reportEl = document.getElementById('printReport');
+  if(dates.length === 0){
+    reportEl.innerHTML = `<p class="report-empty">Aucune entrée enregistrée sur les 30 derniers jours.</p>`;
+    return;
+  }
+
+  const identity = getIdentity();
+  const identityLine = (identity && (identity.prenom || identity.nom))
+    ? `<p style="font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin:4px 0 0;">${identity.prenom} ${identity.nom}</p>`
+    : '';
+
+  let html = `<h1 style="font-family:'Fraunces',serif;">Glycotrace — Historique (30 jours)</h1>
+    ${identityLine}
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:#5B6B62;">Généré le ${new Date().toLocaleDateString('fr-FR')}</p>`;
+
+  dates.forEach(dateStr=>{
+    let entries = [];
+    try{ entries = JSON.parse(localStorage.getItem(storageKey(dateStr))) || []; } catch(e){}
+    if(entries.length === 0) return;
+
+    const dayCarbs = entries.reduce((s,e)=>s+e.carbsG,0);
+    const dayGL = entries.reduce((s,e)=>s+e.gl,0);
+
+    html += `<div class="report-day">
+      <h3>${formatDateLabel(dateStr)}</h3>
+      <div class="day-total">${dayCarbs.toFixed(1)} g glucides · charge glycémique totale ${dayGL.toFixed(1)}</div>`;
+
+    MEAL_ORDER_FULL.forEach(mealName=>{
+      const group = entries.filter(e => (e.meal || 'Collation') === mealName);
+      if(group.length === 0) return;
+      const gCarbs = group.reduce((s,e)=>s+e.carbsG,0);
+      const gGL = group.reduce((s,e)=>s+e.gl,0);
+      html += `<div class="report-meal ${MEAL_CLASS[mealName]}">
+        <div class="rm-head">${mealName} — ${gCarbs.toFixed(1)} g · charge ${gGL.toFixed(1)}</div>
+        <table>
+          <thead><tr><th>Aliment</th><th>Qté</th><th>Glucides</th><th>IG</th><th>Charge</th></tr></thead>
+          <tbody>`;
+      group.forEach(e=>{
+        html += `<tr><td>${e.name}</td><td>${e.qty} g</td><td>${e.carbsG.toFixed(1)} g</td><td>${e.gi}</td><td>${e.gl.toFixed(1)}</td></tr>`;
+      });
+      html += `</tbody></table></div>`;
+    });
+
+    html += `</div>`;
+  });
+
+  reportEl.innerHTML = html;
+}
+
+document.getElementById('printHistoryBtn').addEventListener('click', ()=>{
+  buildPrintReport();
+  setTimeout(()=> window.print(), 50);
+});
+// --- Freins superficiels contre la copie (n'empêchent pas un accès via les outils navigateur) ---
+document.addEventListener('contextmenu', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  const inField = tag === 'input' || tag === 'select' || tag === 'textarea';
+  if(!inField) e.preventDefault();
+});
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  const inField = tag === 'input' || tag === 'select' || tag === 'textarea';
+  const k = e.key.toLowerCase();
+  const blockedCombo = (e.ctrlKey || e.metaKey) && ['u','s'].includes(k);
+  const blockedCopy = (e.ctrlKey || e.metaKey) && k === 'c' && !inField;
+  const blockedFn = e.key === 'F12';
+  const blockedDevtools = (e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].includes(k);
+  if(blockedCombo || blockedCopy || blockedFn || blockedDevtools) e.preventDefault();
+});
+// --- PWA : enregistrement du service worker + invite d'installation ---
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if(btn) btn.style.display = 'inline-block';
+});
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  const installBtn = document.getElementById('installBtn');
+  if(installBtn){
+    installBtn.addEventListener('click', async ()=>{
+      if(!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>
